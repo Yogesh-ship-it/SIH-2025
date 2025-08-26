@@ -1,0 +1,110 @@
+/* General */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Landing Page */
+.landing {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #ffedd5, #fff1f2, #fef9c3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Pattern */
+.pattern {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f97316' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12-12-5.373-12-12zm0-30c6.627 0 12 5.373 12 12s-5.373 12-12 12S18 18.627 18 12 23.373 0 30 0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.2;
+}
+
+/* Content */
+.content {
+  text-align: center;
+  z-index: 10;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #ea580c;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.title .red {
+  color: #dc2626;
+}
+
+.title .yellow {
+  color: #ca8a04;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #374151;
+  margin-bottom: 40px;
+}
+
+/* Features */
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  border-radius: 999px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.feature i {
+  width: 20px;
+  height: 20px;
+  color: #ea580c;
+  margin-right: 8px;
+}
+
+/* Button */
+.cta {
+  background: #ea580c;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.cta:hover {
+  background: #c2410c;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+/* Bottom Gradient */
+.bottom-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to top, rgba(251,191,36,0.5), transparent);
+}
