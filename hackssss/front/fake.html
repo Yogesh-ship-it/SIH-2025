@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Sikkim</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: monospace;
+      font-size: 5rem;
+    }
+    #typed {
+      border-right: 3px solid white;
+      padding-right: 5px;
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div id="typed"></div>
+
+  <audio id="keySound" src="key.mp3" preload="auto"></audio>
+
+  <script>
+    const text = "SIKKIM";
+    let i = 0;
+    const speed = 500; // typing speed
+    const typed = document.getElementById("typed");
+    const sound = document.getElementById("keySound");
+
+    function type() {
+      if (i < text.length) {
+        typed.textContent += text.charAt(i);
+        sound.currentTime = 0; // reset sound
+        sound.play();
+        i++;
+        setTimeout(type, speed);
+      } else {
+        setTimeout(() => window.location.href = "categories.html", 1500); // go to categories
+      }
+    }
+    type();
+  </script>
+</body>
+</html>

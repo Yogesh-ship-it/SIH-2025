@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sikkim Travel Planner</title>
+<style>
+  /* Background with gradient + image */
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: 
+      linear-gradient(rgba(0, 30, 60, 0.7), rgba(0, 30, 60, 0.7)),
+      url('https://upload.wikimedia.org/wikipedia/commons/5/5c/Gangtok_city_view.jpg') no-repeat center center/cover;
+    color: #fff;
+  }
+
+  h1 { 
+    text-align: center; 
+    color: #ffdd57; 
+    margin: 20px 0 25px; 
+    font-size: 2.2rem; 
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  }
+
+  form, #itinerary {
+    width: 100%;
+    max-width: 720px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  label { 
+    display: block; 
+    font-weight: 700; 
+    margin-top: 18px; 
+    margin-bottom: 6px; 
+    font-size: 1.05rem; 
+  }
+
+  select, input[type="number"] {
+    width: 100%; 
+    padding: 14px 16px; 
+    border-radius: 8px; 
+    border: none;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.9);
+    color: #333;
+  }
+
+  button {
+    margin-top: 20px; 
+    width: 100%; 
+    background-color: #ff7b54; 
+    color: white; 
+    border: none;
+    padding: 14px 0; 
+    font-size: 1.2rem; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    font-weight: 700; 
+    transition: 0.3s;
+  }
+  button:hover { background-color: #e85a32; }
+
+  #itinerary { 
+    margin-top: 40px; 
+    display: none; 
+  }
+
+  .day { margin-bottom: 24px; }
+  .day h3 { 
+    color: #ffdd57; 
+    border-bottom: 2px solid #ffdd57; 
+    padding-bottom: 8px; 
+    font-weight: 800; 
+    margin-bottom: 12px;
+  }
+  ul { 
+    padding-left: 22px; 
+    list-style-type: disc; 
+    font-size: 1.05rem; 
+    color: #f1f1f1; 
+  }
+  .fallback-note { font-style: italic; color: #eee; margin-bottom: 8px; }
+  .no-results { text-align: center; font-weight: 700; color: #ffdede; font-size: 1.1rem; }
+</style>
+</head>
+<body>
+
+<h1>Sikkim Travel Planner</h1>
+<form id="plannerForm">
+  <label for="days">Number of Days (1-4):</label>
+  <input type="number" id="days" name="days" min="1" max="14" required />
+
+  <label for="category">Interest Category:</label>
+  <select id="category" name="category" required>
+    <option value="" disabled selected>Select your interest</option>
+    <option value="nature">Nature</option>
+    <option value="history">History</option>
+    <option value="culture">Culture</option>
+    <option value="other">Other</option>
+  </select>
+
+  <label for="budget">Budget Level:</label>
+  <select id="budget" name="budget" required>
+    <option value="" disabled selected>Select your budget</option>
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+    <option value="luxury">Luxury</option>
+  </select>
+
+  <button type="submit">Generate Travel Plan</button>
+</form>
+
+<section id="itinerary"></section>
+
+<script>
+  const form = document.getElementById('plannerForm');
+  const itinerarySection = document.getElementById('itinerary');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const days = form.days.value;
+    const category = form.category.value;
+    const budget = form.budget.value;
+
+    itinerarySection.innerHTML = '';
+    itinerarySection.style.display = 'none';
+
+    try {
+      const response = await fetch('/plan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ days, category, budget }),
+      });
+      const data = await response.json();
+
+      const itinerary = data.itinerary;
+      const fallback = data.fallback_activities || [];
+
+      let hasPlans = false;
+      for (const day in itinerary) {
+        const dayDiv = document.createElement('div');
+        dayDiv.className = 'day';
+
+        const dayHeader = document.createElement('h3');
+        dayHeader.textContent = `Day ${day}`;
+        dayDiv.appendChild(dayHeader);
+
+        const planForDay = itinerary[day];
+        if (planForDay.length === 0) {
+          if (fallback.length > 0) {
+            const note = document.createElement('p');
+            note.className = 'fallback-note';
+            note.textContent = 'No attractions planned. You might consider:';
+            dayDiv.appendChild(note);
+
+            const ul = document.createElement('ul');
+            fallback.forEach(item => {
+              const li = document.createElement('li');
+              li.textContent = item;
+              ul.appendChild(li);
+            });
+            dayDiv.appendChild(ul);
+          } else {
+            const noPlan = document.createElement('p');
+            noPlan.className = 'no-results';
+            noPlan.textContent = 'No activities planned.';
+            dayDiv.appendChild(noPlan);
+          }
+        } else {
+          hasPlans = true;
+          const ul = document.createElement('ul');
+          planForDay.forEach(place => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${place.name}</strong> - ${place.desc} <em>(${place.location})</em>`;
+            ul.appendChild(li);
+          });
+          dayDiv.appendChild(ul);
+        }
+
+        itinerarySection.appendChild(dayDiv);
+      }
+
+      itinerarySection.style.display = 'block';
+      itinerarySection.scrollIntoView({ behavior: 'smooth' });
+
+      if (!hasPlans) {
+        alert('No attractions found for your criteria.');
+      }
+    } catch (error) {
+      alert('Failed to get travel plan. Please try again later.');
+      console.error(error);
+    }
+  });
+</script>
+
+</body>
+</html>

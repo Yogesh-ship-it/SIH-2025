@@ -1,0 +1,84 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #dbeafe, #e0f2fe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.container {
+  max-width: 900px;  /* Keeps layout centered */
+  padding: 40px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #374151;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Always 3 per row */
+  gap: 25px;
+  margin-top: 40px;
+  justify-items: center;
+}
+
+/* Card Styling */
+.card {
+  width: 220px; /* Fixed card width */
+  padding: 50px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
+}
+
+.icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Color Variants */
+.orange { background: #f97316; }
+.red    { background: #ef4444; }
+.blue   { background: #3b82f6; }
+.purple { background: #a855f7; }
+.green  { background: #22c55e; }
+.pink   { background: #ec4899; }
+
+/* Back Link */
+.back-link {
+  display: block;
+  margin-top: 30px;
+  font-size: 1rem;
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}

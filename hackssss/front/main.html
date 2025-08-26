@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Timeless Sikkim</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <!-- For icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    /* Quick scaling for the content */
+    .content {
+      transform: scale(1.2);   /* Makes everything inside larger */
+      transform-origin: center;
+    }
+
+    .features {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      font-size: 0.6rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .feature:hover {
+      transform: scale(1.1);
+      color: #d62828; /* highlight on hover */
+    }
+
+    .feature i {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay loop muted class="back-video">
+    <source src="videoplayback.mp4" type="video/mp4">
+  </video>
+  <div class="landing">
+    <!-- Background Pattern -->
+    <div class="pattern"></div>
+
+    <!-- Content -->
+    <div class="content">
+      <h1 class="title">
+        Discover <br>
+        <span class="red">Timeless</span> <br>
+        <span class="yellow">Sikkim</span>
+      </h1>
+
+      <p class="subtitle">
+        Unveiling the hidden stories behind Sikkim's magnificent heritage
+      </p>
+
+      <!-- Features with Links -->
+      <div class="features">
+        <a href="stories.html" class="feature">
+          <i data-feather="book-open"></i>
+          <span>Rich Stories</span>
+        </a>
+        <a href="Calendar.html" class="feature">
+          <i data-feather="calendar"></i>
+
+          <span>Event Calendar</span>
+        </a>
+        <a href="itineraries.html" class="feature">
+          <i data-feather="navigation"></i>
+          <span>Custom Itineraries</span>
+        </a>
+      </div>
+
+      <!-- Button -->
+    <a href="fake.html" class="cta">Begin Your Journey</a>
+    </div>
+
+    <!-- Bottom Gradient -->
+    <div class="bottom-gradient"></div>
+  </div>
+
+  <script>
+    feather.replace(); // Activate feather icons
+  </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sikkim Monasteries Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Roboto', sans-serif; }
+    body { background: #f9f9f9; color: #333; }
+
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      color: #054a91;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-info {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      color: #fff;
+      text-align: center;
+    }
+
+    .card-info h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card-info button {
+      background-color: #e63946;
+      border: none;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .card-info button:hover {
+      background-color: #d62828;
+    }
+
+    .discover-more {
+      display: block;
+      width: 200px;
+      margin: 50px auto;
+      text-align: center;
+      padding: 12px 0;
+      background-color: #054a91;
+      color: white;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .discover-more:hover {
+      background-color: #032c5a;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Explore Sikkim's Monasteries</h1>
+
+    <div class="grid">
+      <div class="card">
+        <img src="rumtek-monastery-01.jpg" alt="Rumtek Monastery">
+        <div class="card-info">
+          <h3>Rumtek Monastery</h3>
+          <button onclick="window.location.href='mona1.html'">Explore</button>
+
+    
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Raghav.jpg" alt="Pemayangtse Monastery">
+        <div class="card-info">
+          <h3>Pemayangtse Monastery</h3>
+          <button onclick="window.open('https://en.wikipedia.org/wiki/Pemayangtse_Monastery', '_blank')">Explore</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="ghoom_monastery_1024.jpg" alt="Phodong Monastery">
+        <div class="card-info">
+          <h3>Phodong Monastery</h3>
+          <button onclick="window.open('https://en.wikipedia.org/wiki/Phodong_Monastery', '_blank')">Explore</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="ghoom_monastery_1024.jpg" alt="Tashiding Monastery">
+        <div class="card-info">
+          <h3>Tashiding Monastery</h3>
+          <button onclick="window.open('https://en.wikipedia.org/wiki/Tashiding_Monastery', '_blank')">Explore</button>
+        </div>
+      </div>
+    </div>
+
+    <a href="index.html" class="discover-more">Discover More</a>
+  </div>
+
+</body>
+</html>

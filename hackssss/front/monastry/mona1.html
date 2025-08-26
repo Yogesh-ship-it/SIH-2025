@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Explore Rumtek Monastery</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .left, .right {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* Left: slideshow */
+  .left {
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .slide {
+    position: absolute;
+    width: auto;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.7);
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .slide.active {
+    opacity: 1;
+  }
+
+  /* Right: video + articles */
+  .right {
+    background: #f8f9fa;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 14px;
+  }
+
+  .articles {
+    overflow-y: auto;
+    max-height: 45vh;
+  }
+
+  .article {
+    background: white;
+    padding: 18px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    line-height: 1.55;
+    color: #333;
+    font-size: 1rem;
+  }
+
+  .article h2 {
+    margin-top: 0;
+    color: #114b8a;
+    font-weight: 700;
+  }
+
+  @media(max-width: 900px) {
+    .container {
+      flex-direction: column;
+    }
+    .left, .right {
+      height: 50vh;
+      max-height: 50vh;
+    }
+    .articles {
+      max-height: 30vh;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Left: Slideshow -->
+  <div class="left">
+    <img src="ghoom_monastery_1024.jpg"slide active" alt="Rumtek Monastery 1">
+    <img src="Raghav.jpg" class="slide" alt="Rumtek Monastery 2">
+    <img src="rumtek-monastery-01.jpg" class="slide" alt="Rumtek Monastery 3">
+  </div>
+
+  <!-- Right: Video + Articles -->
+  <div class="right">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/LL48yM1nFp8?si=ZQ_rwj4Mn5uzW95J" title="Rumtek Monastery Overview" allowfullscreen></iframe>
+    </div>
+    <div class="articles">
+      <div class="article">
+        <h2>Discover the Place</h2>
+        <p>Rumtek Monastery (Tibetan: རུམ་ཐེག་དགོན་པ་, Wylie: rum theg dgon pa), also called the Dharma Chakra Centre, is a gompa located in the Indian state of Sikkim near Gangtok...</p>
+      </div>
+      <div class="article">
+        <h2>History and Culture</h2>
+        <p>Originally built under the direction of Changchub Dorje, 12th Karmapa Lama in the mid-18th century,[1] Rumtek served as the main seat of the Karma Kagyu lineage in Sikkim for some time. But when Rangjung Rigpe Dorje, 16th Karmapa, arrived in Sikkim in 1959 after fleeing Tibet, the monastery was in ruins. Despite being offered other sites, the Karmapa decided to rebuild Rumtek. To him, the site possessed many auspicious qualities and was surrounded by the most favorable attributes. For example, flowing streams, mountains behind, a snow range in front, and a river below. With the generosity and help of the Sikkim royal family and the local folks of Sikkim, it was built by the 16th Karmapa as his main seat in exile.
+
+After four years, construction of the monastery was completed. The sacred items and relics brought out from Tsurphu Monastery, the Karmapa's seat in Tibet, were installed. On Losar in 1966, the 16th Karmapa officially inaugurated the new seat, called "The Dharmachakra Centre", a place of erudition and spiritual accomplishment, the seat of the glorious Karmapa.[2]
+
+The monastery is currently the largest in Sikkim.[citation needed] It is home to the community of monks and where they perform the rituals and practices of the Karma Kagyu lineage. A golden stupa contains the relics of the 16th Karmapa. Opposite that building is a college, Karma Shri Nalanda Institute for Higher Buddhist Studies.[citation needed]
+
+Rumtek is located 24 kilometres (15 mi) from Gangtok, the capital of Sikkim, at an altitude of about 1,500 metres (4,900 ft).</p>
+      </div>
+      <div class="article">
+        <h2>Travel Tips</h2>
+        <p>Best visited during spring and autumn. Comfortable hiking shoes and a camera are recommended. Local guides add great value to the experience.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let currentIndex = 0;
+
+  function showNextSlide() {
+    slides[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].classList.add('active');
+  }
+
+  setInterval(showNextSlide, 3000); // Change every 3 seconds
+</script>
+
+</body>
+</html>
